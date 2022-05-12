@@ -12,26 +12,33 @@
 // Output: -1
 // Note: You may assume that you have an infinite number of each kind of coin.
 
-function amountOfcoins(amount, coins) 
-{
- if (amount === 0) 
-  {
-     return [];
-   } 
- else
-   {
-     if (amount >= coins[0]) 
-       {
-        left = (amount - coins[0]);
-        return [coins[0]].concat( amountOfcoins(left, coins) );
-        } 
-      else
-        {
-         coins.shift();
-         return amountOfcoins(amount, coins);
-          
-         }
-         
-    }
-} 
-console.log(amountOfcoins(11, [5, 2, 1]));
+function coinChange(coins, amount) {
+  var finalResult = FindMinCount(coins, 0, 0, amount, amount + 1)
+  function FindMinCount(coins, i, currentSum, amount, result) {
+    //console.log(coins,i,currentSum,amount,count,result)
+  } if (amount == 0) {
+    return 0
+  }
+  if (currentSum > amount) {
+    return result
+  }
+  if (currentSum == amount) {
+    //console.log(result,count)
+    result = Math.min(count, result)
+    return result
+  }
+  if (i <= coins.length - 1) {
+    count++
+    result = FindMinCount(coins, i, currentSum + coins[i], amount, count, result)
+    count --
+    result = FindMinCount(coins, i+1 ,currentSum, amount, count , result)
+  }
+  return result
+}
+if (finalResult == intialResult) {
+  return -1
+} else {
+  return finalResult
+  }
+}
+console.log(coinChange([1, 2, 5], 11))
